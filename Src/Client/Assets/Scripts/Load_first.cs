@@ -9,7 +9,8 @@ public class Load_first : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LoadScene(test_name);
+        //LoadScene(test_name);
+        Debug.Log(Application.dataPath);
     }
 
     // Update is called once per frame

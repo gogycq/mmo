@@ -1,0 +1,9 @@
+function Start()
+    print("lua start")
+end
+
+function Update()
+    print("lua update")
+end
+
+print "main lua"

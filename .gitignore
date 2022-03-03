@@ -7,5 +7,7 @@ Src/Client/Assets/UI/*
 Src/Client/Library/*
 Src/Client/Obj/*
 Src/Client/Logs/*
+Src/Client/Temp/*
 Src/Client/mmo_client.sln
 Src/Client/Assets/UI.meta
+*.sln
