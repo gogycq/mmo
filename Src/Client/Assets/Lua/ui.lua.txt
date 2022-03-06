@@ -78,14 +78,6 @@ function UI.LoadUI(uiTable, ...)
 	end
 end
 
-function UI.StartUI(uiTable)
-	if uiTable ~= nil then
-		uiTable:Start()
-		Event.Call(EventType.LoadUI, uiTable.name)
-		GameData.guide:Run("OpenUI_"..uiTable.name)
-	end
-end
-
 local function DoDestroyUI(uiTablea)
 	uiTablea:OnClose()
 	CS.UnityEngine.GameObject.Destroy(uiTablea.gameObject)
@@ -261,11 +253,6 @@ function UI.LoadFlash()
 						LoadChange.transform.anchoredPosition3D =  Vector3(-3418,0,0)
 					end)
 end
-
-
-require("UI/login/loginDemo") 
-require("UI/mainui2/mainui2")     
-require("UI/ui_1")
 
 function UI.createScene(name,path)
   local go = UI.Instantiate(Public.ResourceManager.GetPrefabPath(name,path),UI._3DObject)  

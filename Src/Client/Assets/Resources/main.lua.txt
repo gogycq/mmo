@@ -1,3 +1,4 @@
+require "event"
 require "sproto"
 
 function Start()
