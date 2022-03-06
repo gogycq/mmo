@@ -240,7 +240,7 @@ end
 local UIRootCanvas =  CS.UnityEngine.GameObject.Find("Canvas")
 UI.rootLoading = UIRootCanvas.transform:Find("levelLoading") 
 
-local objLoading = UI.Instantiate(Public.GetPrefab("loader","public"), UI.rootLoading) 
+local objLoading = UI.Instantiate(Public.GetPrefab("loader", "public"), UI.rootLoading) 
 objLoading:SetActive(false)
 
 function UI.SetLoading(v)

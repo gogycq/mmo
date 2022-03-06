@@ -1,0 +1,37 @@
+Public={}  
+
+function Public.GetGameObject(ObjNmae, ...)
+    local pb  = nil
+    if #... >0 then
+        pb = Public.ResourceManager.GetGameObjectPath(ObjNmae, ...)
+    else
+        pb = Public.ResourceManager.GetGameObject(ObjNmae)
+    end
+    return pb
+end
+
+--需要重复预支生成的预制体
+function Public.GetPrefab(prebName, ...)
+    local pb = nil
+    if #... >0 then
+        pb = Public.ResourceManager.GetPrefabPath(prebName, ...)
+    else
+        pb = Public.ResourceManager.GetPrefab(prebName)
+    end
+    return pb
+end
+
+--调取每个功能的大模块显示
+function Public.GetModule(modNmae, ...)
+    local pb = nil
+    if #... >0 then
+        pb = Public.ResourceManager.GetModulePath(modNmae, ...)
+    else
+        pb = Public.ResourceManager.GetModule(modNmae)
+    end
+    return pb
+end
+
+Public.ResourceManager =  CS.ResourceManager 
+
+return Public
