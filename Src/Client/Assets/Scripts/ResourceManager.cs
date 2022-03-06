@@ -34,8 +34,6 @@ public class ResourceManager {
         POP = 4
     }
 
-
-#if UNITY_5 || UNITY_2017 || UNITY_2018
 #if UNITY_ANDROID && !UNITY_EDITOR
     static string pathRoot = LoadTools.assetBundlePath ;       // Application.dataPath + "!assets" ;
     static string assetBundlePath= "";
@@ -46,7 +44,6 @@ public class ResourceManager {
     static string assetBundlePath = "/AssetBundles";
     static string pathRoot = Application.dataPath ;
 #endif // end for deal path
-#endif
 
 
     public static Dictionary<string, Sprite> DicSprite = new Dictionary<string, Sprite>();

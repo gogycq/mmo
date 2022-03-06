@@ -64,7 +64,7 @@ function UI.LoadUI(uiTable, ...)
  
 	uiTable.gameObject = obj
 	uiTable.transform = obj.transform
-	UI.FindUICompent(uiTable,uiTable.transform) 
+	UI.FindUIComponent(uiTable,uiTable.transform) 
 	if uiTableBox[uiTable.layer] ~= nil then
         if uiTable.layer == 4 then
             UI.RemoveAllByLevel( 4 )
@@ -162,24 +162,24 @@ end
 function UI.Find3DCompent(ui)
 	for i = 0, ui.transform.childCount - 1 do
 		local child = ui.transform:GetChild(i)
-		if child.tag == "uiCompnent" then
-			ui:SetUICompent(child)
+		if child.tag == "uiComponent" then
+			ui:SetUIComponent(child)
 		end
 		if child.childCount > 0 then
-			UI.FindUICompent(ui,child)
+			UI.FindUIComponent(ui,child)
 		end
 	end
 end
 
 
-function UI.FindUICompent(ui,transform)	
+function UI.FindUIComponent(ui,transform)	
 	for i=0,transform.childCount -1 do
 		local child = transform:GetChild(i)
-		if child.tag == "uiCompnent" then
-			ui:SetUICompent(child)
+		if child.tag == "uiComponent" then
+			ui:SetUIComponent(child)
 		end
 		if child.childCount > 0 then
-			UI.FindUICompent(ui,child)
+			UI.FindUIComponent(ui,child)
 		end
 	end
 end
@@ -187,7 +187,7 @@ end
 function UI.FindRenderUI(ui,transform)
 	for i = 0, transform.childCount - 1 do
 		local child = transform:GetChild(i)
-		ui:SetUICompent(child)
+		ui:SetUIComponent(child)
 		if child.childCount > 0 then
 			UI.FindRenderUI(ui,child)
 		end
@@ -207,7 +207,7 @@ function UI.CreateRenderTable()
 		UI.FindRenderUI(self, self.transform)
 	end
 
-	Render.SetUICompent = function(self, child)
+	Render.SetUIComponent = function(self, child)
 	end
 
 	return Render
@@ -224,7 +224,7 @@ end
 function UI.DestroyChildren(transform)
 	for i=transform.childCount-1, 0, -1 do
 		if transform:GetChild(i).gameObject ~= nil then
-		CS.UnityEngine.GameObject.Destroy(transform:GetChild(i).gameObject)
+		    CS.UnityEngine.GameObject.Destroy(transform:GetChild(i).gameObject)
 		end
 	end
 end
