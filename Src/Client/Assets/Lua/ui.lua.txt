@@ -54,7 +54,7 @@ local function GetIndex()
 	return uiIndex
 end
 
-function UI.LoadUI(uiTable,...)
+function UI.LoadUI(uiTable, ...)
 	local obj  = nil 
 	if uiTable.layer == 99 then
         obj = UI.Instantiate(Public.GetModule(uiTable.name, uiTable.path), UI._3DObject, uiTable.name)
@@ -81,8 +81,8 @@ end
 function UI.StartUI(uiTable)
 	if uiTable ~= nil then
 		uiTable:Start()
-		Event.Call(EventType.LoadUI,uiTable.name)
-		GameData.guide:Run("OpenUI_"..uiTable.name)--
+		Event.Call(EventType.LoadUI, uiTable.name)
+		GameData.guide:Run("OpenUI_"..uiTable.name)
 	end
 end
 
