@@ -74,7 +74,7 @@ public class ResourceManager {
         return temp.Split('*');
     }
 
-	static Texture GetTexture(string key ,string path) {
+	static Texture GetTexture(string key, string path) {
 		path = path.ToLower();
 		if (allTexture.ContainsKey(key)) {
 
@@ -82,13 +82,13 @@ public class ResourceManager {
 		} else {   
 			if(allAssetBundle.ContainsKey("Texture")) {
 
-                SetAssetOne("Texture",key,"Texture", allAssetBundle["Texture"]);
+                SetAssetOne("Texture", key, "Texture", allAssetBundle["Texture"]);
 			} else {
 				AssetBundle ab = Load("Texture"); 
 				allAssetBundle["Texture"] = ab;
-				SetAssetOne("Texture",key,"Texture", ab);
+				SetAssetOne("Texture", key, "Texture", ab);
 			}
-			return allTexture[ key];
+			return allTexture[key];
 		}
 	}
 	
@@ -98,10 +98,10 @@ public class ResourceManager {
 			#if UNITY_EDITOR             
 			return AssetDatabase.LoadAssetAtPath<Texture>("Assets/AssetBundlesLocal/texture/"  + key + ".png");
 			#else 
-			return GetTexture(key,path);
+			return GetTexture(key, path);
 			#endif
 		} else {
-			return GetTexture(key,path);
+			return GetTexture(key, path);
 		}
 	}
     static Sprite GetSprite(string key, string path) {  
@@ -125,30 +125,32 @@ public class ResourceManager {
     public static AudioClip LoadAudioClip(string path, string name) {
         #if UNITY_EDITOR
         return AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/AssetBundlesLocal/" + path + "/" + name + ".mp3");
+        #else
+        return GetAudioClip(name, path);
         #endif
-        return GetAudioClip(name , path );
     }
     
     public static AudioClip LoadAudioClipWAV(string path, string name) {
         #if UNITY_EDITOR
         return AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/AssetBundlesLocal/" + path + "/" + name + ".wav");
-        #endif
+        #else
         return GetAudioClip(name, path);
+        #endif
     }
 
     static AudioClip GetAudioClip(string key ,string path) {  
         path = path.ToLower();
-        if (allSprite.ContainsKey(path+"_"+key)) {
+        if (allAudioClip.ContainsKey(path+"_"+key)) {
             
             return allAudioClip[path+"_"+key];
         } else {
             if(allAssetBundle.ContainsKey(path)) {
 
-                SetAssetOne("AudioClip",key,path, allAssetBundle[path]);
+                SetAssetOne("AudioClip", key, path, allAssetBundle[path]);
             } else {
                 AssetBundle ab = Load(path);
                 allAssetBundle[path] = ab;
-                SetAssetOne("AudioClip",key,path, ab);
+                SetAssetOne("AudioClip", key, path, ab);
             }
             return allAudioClip[path+"_"+key];
         }
