@@ -52,9 +52,9 @@ public class ResourceManager {
     public static Dictionary<string, GameObject> allPrefab = new Dictionary<string, GameObject>();
     public static Dictionary<string, GameObject> allGameObject = new Dictionary<string, GameObject>();
     public static Dictionary<string, GameObject> allModule = new Dictionary<string, GameObject>();
-    public static  Dictionary<string, AssetBundle> allAssetBundle = new Dictionary<string, AssetBundle>();
-    public static  Dictionary<string, byte[]> allLuaByte = new Dictionary<string,  byte[]>();
-    public static  Dictionary<string, AudioClip> allAudioClip = new Dictionary<string,  AudioClip>();
+    public static Dictionary<string, AssetBundle> allAssetBundle = new Dictionary<string, AssetBundle>();
+    public static Dictionary<string, byte[]> allLuaByte = new Dictionary<string,  byte[]>();
+    public static Dictionary<string, AudioClip> allAudioClip = new Dictionary<string,  AudioClip>();
 	public static Dictionary<string, Font> allFont = new Dictionary<string, Font>();
 	public static Dictionary<string, Texture> allTexture = new Dictionary<string, Texture>(); 
 
