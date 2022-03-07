@@ -76,19 +76,19 @@ public class ResourceManager {
 
 	static Texture GetTexture(string key, string path) {
 		path = path.ToLower();
-		if (allTexture.ContainsKey(key)) {
+		if (allTexture.ContainsKey(path+"_"+key)) {
 
-			return allTexture[key];
+			return allTexture[path+"_"+key];
 		} else {   
-			if(allAssetBundle.ContainsKey("Texture")) {
+			if(allAssetBundle.ContainsKey(path)) {
 
-                SetAssetOne("Texture", key, "Texture", allAssetBundle["Texture"]);
+                SetAssetOne("Texture", key, path, allAssetBundle[path]);
 			} else {
-				AssetBundle ab = Load("Texture"); 
-				allAssetBundle["Texture"] = ab;
-				SetAssetOne("Texture", key, "Texture", ab);
+				AssetBundle ab = Load(path); 
+				allAssetBundle[path] = ab;
+				SetAssetOne("Texture", key, path, ab);
 			}
-			return allTexture[key];
+			return allTexture[path+"_"+key];
 		}
 	}
 	
@@ -96,7 +96,7 @@ public class ResourceManager {
 		if (!GameConfig.UseAssetsBundle) {
 
 			#if UNITY_EDITOR             
-			return AssetDatabase.LoadAssetAtPath<Texture>("Assets/AssetBundlesLocal/texture/"  + key + ".png");
+			return AssetDatabase.LoadAssetAtPath<Texture>("Assets/AssetBundlesLocal/Texture/" + path + "/" + key + ".png");
 			#else 
 			return GetTexture(key, path);
 			#endif
@@ -122,6 +122,7 @@ public class ResourceManager {
         }
     }
     
+    // 需要严格区分同一文件夹下不能有同名的
     public static AudioClip LoadAudioClip(string path, string name) {
         #if UNITY_EDITOR
         return AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/AssetBundlesLocal/" + path + "/" + name + ".mp3");
@@ -138,7 +139,7 @@ public class ResourceManager {
         #endif
     }
 
-    static AudioClip GetAudioClip(string key ,string path) {  
+    static AudioClip GetAudioClip(string key, string path) {  
         path = path.ToLower();
         if (allAudioClip.ContainsKey(path+"_"+key)) {
             
@@ -185,11 +186,11 @@ public class ResourceManager {
         } else if (type == "AudioClip") {
             allAudioClip[path+"_"+key] = ab.LoadAsset<AudioClip>(key);
 		} else if (type == "Texture") {
-			allTexture[key] = ab.LoadAsset<Texture>(key);
+			allTexture[path+"_"+key] = ab.LoadAsset<Texture>(key);
 		}
     }
     
-    static GameObject GetPrefab(string key ,string path) {  
+    static GameObject GetPrefab(string key, string path) {  
         path = path.ToLower();
         Debug.LogError(path + "   GetPrefab    key  " + key);
        
@@ -198,11 +199,11 @@ public class ResourceManager {
             return allPrefab[path+"_"+key];
         } else {      
             if(allAssetBundle.ContainsKey(path)) {
-                SetAssetOne("Prefab",key,path, allAssetBundle[path]);
+                SetAssetOne("Prefab", key, path, allAssetBundle[path]);
             } else {
                 AssetBundle ab = Load(path);
                 allAssetBundle[path] = ab;
-                SetAssetOne("Prefab",key,path, ab);
+                SetAssetOne("Prefab", key, path, ab);
             }    
             return allPrefab[path+"_"+key];
         }
@@ -217,11 +218,11 @@ public class ResourceManager {
             return allGameObject[path+"_"+key];
         } else {
             if (allAssetBundle.ContainsKey(path)) {
-                SetAssetOne("GameObject",key,path, allAssetBundle[path]);
+                SetAssetOne("GameObject", key, path, allAssetBundle[path]);
             } else {
                 AssetBundle ab = Load(path);
                 allAssetBundle[path] = ab;
-                SetAssetOne("GameObject",key,path, ab);
+                SetAssetOne("GameObject", key, path, ab);
             }
             return allGameObject[path+"_"+key];
         }
@@ -238,12 +239,12 @@ public class ResourceManager {
             if (allAssetBundle.ContainsKey(path)) {
                 
                 Debug.Log("ContainsKey GetModule  " + path);
-                SetAssetOne("Module",key,path, allAssetBundle[path]);
+                SetAssetOne("Module", key, path, allAssetBundle[path]);
             } else {
                 Debug.Log("!ContainsKey GetModule  " + path);
                 AssetBundle ab = Load(path);
                 allAssetBundle[path] = ab;
-                SetAssetOne("Module",key,path, ab);
+                SetAssetOne("Module", key, path, ab);
             }
             return allModule[path+"_"+key];
         }
