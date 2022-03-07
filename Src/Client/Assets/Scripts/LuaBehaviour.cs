@@ -85,6 +85,11 @@ public class LuaBehaviour : MonoBehaviour
     }
 
     private byte[] CustomLoaderMethod(ref string fileName) {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        return  ResourceManager.allLuaByte[ fileName.ToLower() ];
+#elif UNITY_IOS && !UNITY_EDITOR 
+		return  ResourceManager.allLuaByte[fileName.ToLower()];
+#else 
         fileName = luaFilePath + fileName.Replace('.', '/') + ".lua";
         if (File.Exists(fileName)) {
 
@@ -92,5 +97,6 @@ public class LuaBehaviour : MonoBehaviour
         } else {
             return null;
         }
+#endif
     }
 }

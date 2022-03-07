@@ -310,8 +310,8 @@ public class ResourceManager {
         Debug.Log(" loadLuaToByte name2  "+ name);
         for (int i = 0; i < abs.Length; i++) {
             Debug.Log(" abs[i]  "+ abs[i]);
-            string  temp = abs[i].Substring(11 );
-            temp = temp.Substring(0 , temp.Length-8);
+            string temp = abs[i].Substring(11);
+            temp = temp.Substring(0, temp.Length-8);
             
             if (allLuaByte.ContainsKey(temp)) {
 
