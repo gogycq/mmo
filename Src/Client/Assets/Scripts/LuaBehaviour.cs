@@ -22,7 +22,7 @@ public class LuaBehaviour : MonoBehaviour
     
     void Awake()
     {
-        luaFilePath = Application.dataPath + "/" + "Lua/" ;    
+        luaFilePath = Application.dataPath + "/" + "Lua/" ;
         LuaEnv.CustomLoader method = CustomLoaderMethod;
         luaEnv = new LuaEnv();
         luaEnv.AddLoader(method);
@@ -90,7 +90,7 @@ public class LuaBehaviour : MonoBehaviour
 #elif UNITY_IOS && !UNITY_EDITOR 
 		return  ResourceManager.allLuaByte[fileName.ToLower()];
 #else 
-        fileName = luaFilePath + fileName.Replace('.', '/') + ".lua";
+        fileName = luaFilePath + fileName.Replace('.', '/') + ".lua.txt";
         if (File.Exists(fileName)) {
 
 			return File.ReadAllBytes(fileName.ToLower());
