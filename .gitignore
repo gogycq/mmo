@@ -4,6 +4,7 @@ Src/Client/Assembly-CSharp-Editor.csproj
 Src/Client/Assembly-CSharp.csproj
 Src/Client/Assets/Models/*
 Src/Client/Assets/UI/*
+Src/Client/Assets/AssetBundlesLocal/*
 Src/Client/Library/*
 Src/Client/Obj/*
 Src/Client/Logs/*
