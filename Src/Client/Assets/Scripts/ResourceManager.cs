@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -57,6 +58,7 @@ public class ResourceManager {
     public static Dictionary<string, AudioClip> allAudioClip = new Dictionary<string,  AudioClip>();
 	public static Dictionary<string, Font> allFont = new Dictionary<string, Font>();
 	public static Dictionary<string, Texture> allTexture = new Dictionary<string, Texture>(); 
+    public static Dictionary<string, string> DicScenePath = new Dictionary<string, string>();
 
     static string Type = "one";
 
@@ -72,6 +74,58 @@ public class ResourceManager {
     public static string[] GetNextPages(string name) {
         string temp = DicRecource[name].nextPages;
         return temp.Split('*');
+    }
+
+    public static string GetScenePath(string name) {
+        #if UNITY_EDITOR
+        return "Assets/Scenes/" + name + ".unity";
+        #else
+        LoadSceneResource(name);
+        if (DicScenePath.ContainsKey(name)) return DicScenePath[name];
+        if (allAssetBundle["scenes"] == null) return null;
+        return allAssetBundle["scenes"].GetAllScenePaths()[0];
+        #endif
+    }
+
+    public static void InitScenePath() {
+        #if UNITY_EDITOR
+        return;
+        #else
+        AssetBundle ab = Load("scenes");
+        string[] paths = ab.GetAllScenePaths();
+        for (int i = 0; i < paths.Length; i++) {
+            string trueName = "";
+            string trueIoPath = System.IO.Path.GetFileNameWithoutExtension(paths[i]);
+            string[] tmpNames = trueIoPath.Split('/');
+            if (tmpNames.Length > 0) {
+
+                trueName = tmpNames[tmpNames.Length-1];
+            }
+
+            if (trueName != "") {
+
+                DicScenePath.Add(trueName, trueIoPath);
+            }
+        }
+        #endif
+    }
+
+    public static void LoadSceneResource(string name) {
+        string bundleName = "scene_" + name;
+        if (allAssetBundle[bundleName] != null) {
+
+            AssetBundle ab = Load(bundleName);
+            allAssetBundle[bundleName] = ab;
+        }
+    }
+
+    public static void UnLoadSceneResource(string name) {
+
+        string bundleName = "scene_" + name;
+        if (allAssetBundle[bundleName] != null) {
+
+            // todo unload asset bundle
+        }
     }
 
 	static Texture GetTexture(string key, string path) {
