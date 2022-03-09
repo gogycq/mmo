@@ -87,7 +87,8 @@ public class ResourceManager {
         #endif
     }
 
-    public static void InitScenePath() {
+    public static void InitScenePath() 
+    {
         #if UNITY_EDITOR
         return;
         #else

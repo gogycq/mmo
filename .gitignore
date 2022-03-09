@@ -4,6 +4,7 @@ Src/Client/Assembly-CSharp-Editor.csproj
 Src/Client/Assembly-CSharp.csproj
 Src/Client/Assets/Models/*
 Src/Client/Assets/UI/*
+Src/Client/Assets/StreamingAssets/*
 Src/Client/Assets/AssetBundlesLocal/*
 Src/Client/Library/*
 Src/Client/Obj/*
@@ -11,4 +12,5 @@ Src/Client/Logs/*
 Src/Client/Temp/*
 Src/Client/mmo_client.sln
 Src/Client/Assets/UI.meta
+Src/Client/AssetBundles/*
 *.sln
