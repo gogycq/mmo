@@ -85,12 +85,12 @@ public class LuaBehaviour : MonoBehaviour
     }
 
     private byte[] CustomLoaderMethod(ref string fileName) {
-#if UNITY_ANDROID && !UNITY_EDITOR
-        return  ResourceManager.allLuaByte[ fileName.ToLower() ];
-#elif UNITY_IOS && !UNITY_EDITOR 
+        fileName = fileName.Replace('.', '/');
+#if !UNITY_EDITOR
+        Debug.Log("this is name: " + fileName.ToLower());
 		return  ResourceManager.allLuaByte[fileName.ToLower()];
 #else 
-        fileName = luaFilePath + fileName.Replace('.', '/') + ".lua.txt";
+        fileName = luaFilePath + fileName + ".lua.txt";
         if (File.Exists(fileName)) {
 
 			return File.ReadAllBytes(fileName.ToLower());

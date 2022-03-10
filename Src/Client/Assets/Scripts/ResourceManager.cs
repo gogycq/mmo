@@ -103,6 +103,7 @@ public class ResourceManager {
                 trueName = tmpNames[tmpNames.Length-1];
             }
 
+            Debug.Log("This is name : " + trueName + " path: " + trueIoPath);
             if (trueName != "") {
 
                 DicScenePath.Add(trueName, trueIoPath);
@@ -113,7 +114,7 @@ public class ResourceManager {
 
     public static void LoadSceneResource(string name) {
         string bundleName = "scene_" + name;
-        if (allAssetBundle[bundleName] != null) {
+        if (!allAssetBundle.ContainsKey(bundleName)) {
 
             AssetBundle ab = Load(bundleName);
             allAssetBundle[bundleName] = ab;
@@ -123,7 +124,7 @@ public class ResourceManager {
     public static void UnLoadSceneResource(string name) {
 
         string bundleName = "scene_" + name;
-        if (allAssetBundle[bundleName] != null) {
+        if (allAssetBundle.ContainsKey(bundleName)) {
 
             // todo unload asset bundle
         }
@@ -364,8 +365,8 @@ public class ResourceManager {
         string[] abs = ab.GetAllAssetNames();
         Debug.Log(" loadLuaToByte name2  "+ name);
         for (int i = 0; i < abs.Length; i++) {
-            Debug.Log(" abs[i]  "+ abs[i]);
             string temp = abs[i].Substring(11);
+            Debug.Log(" abs[i]  "+ abs[i] + " " + temp);
             temp = temp.Substring(0, temp.Length-8);
             
             if (allLuaByte.ContainsKey(temp)) {
